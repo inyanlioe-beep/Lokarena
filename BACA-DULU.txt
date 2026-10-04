@@ -1,0 +1,32 @@
+LOKARENA — PAKET DOKUMEN DAN CONTOH UI/UX
+Versi terbaru per 4 Oktober 2026
+
+CARA MEMBUKA
+1. Ekstrak ZIP menggunakan Extract All di Windows atau aplikasi arsip lain.
+2. Buka folder Lokarena/ui.
+3. Klik dua kali Lokarena-UI-UX.html untuk membuka contoh UI di Chrome atau Edge terbaru.
+4. Pilih tab Event, Checkout, E-ticket, Organizer, atau Check-in.
+5. Coba jumlah tiket, promo LOKA20, dan simulasi pembayaran/check-in.
+
+ISI PAKET
+- dokumen/PRD-Lokarena.md: PRD dengan 52 bagian.
+- dokumen/Perencanaan-Lokarena.md: sitemap, user flow, spesifikasi layar,
+  ERD, API awal, backlog, acceptance criteria, risiko, dan rencana kerja.
+- ui/Lokarena-UI-UX.html: contoh UI/UX interaktif yang dapat dibuka di browser.
+- gambar/: gambar asli PNG dan versi JPEG untuk banner serta profil pembicara.
+- source/lokarena-ui-fragment.html: sumber UI untuk diedit developer.
+
+MEMBACA DOKUMEN
+File .md adalah teks Markdown; dapat dibuka dengan Notepad, VS Code,
+atau editor Markdown. Diagram Mermaid memerlukan viewer yang mendukung
+Mermaid; di Notepad diagram tampil sebagai kode.
+
+CATATAN CONTOH UI
+Gambar sudah tertanam pada HTML. Internet diperlukan untuk memuat ikon
+pendukung dari CDN; tanpa internet, ikon mungkin tidak muncul tetapi gambar,
+form, dan simulasi utama tetap tersedia. UI ini contoh desain dan tidak
+terhubung ke payment gateway atau database. QR merupakan ilustrasi,
+pembicara adalah tokoh fiktif, dan transaksi tidak nyata.
+
+Paket berisi deliverable versi terbaru dengan nama Lokarena.
+File sementara pemeriksaan dan duplikasi versi lama tidak disertakan.

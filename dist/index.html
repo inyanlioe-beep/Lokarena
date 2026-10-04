@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lokarena — Aplikasi Ticketing Event Terpusat</title>
+  <meta name="description" content="Aplikasi ticketing single organizer untuk pengelolaan multi-event, pembelian tiket, verifikasi pembayaran, e-ticket, dan QR check-in peserta.">
+  <script type="module" crossorigin src="/assets/index-CZW4xK-l.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DNQvsBx8.css">
+</head>
+<body>
+  <div class="tc-container">
+    <!-- Top Demo Switcher & Global Bar -->
+    <div class="tc-demo-bar">
+      <div class="tc-tabs" aria-label="Navigasi Contoh Layar">
+        <button class="tc-tab" data-view="event" aria-pressed="true"><i data-lucide="calendar"></i> Event Detail</button>
+        <button class="tc-tab" data-view="events" aria-pressed="false"><i data-lucide="search"></i> Semua Event</button>
+        <button class="tc-tab" data-view="checkout" aria-pressed="false"><i data-lucide="receipt"></i> Checkout</button>
+        <button class="tc-tab" data-view="payment" aria-pressed="false"><i data-lucide="clock"></i> Pembayaran</button>
+        <button class="tc-tab" data-view="ticket" aria-pressed="false"><i data-lucide="ticket"></i> E-Ticket</button>
+        <button class="tc-tab" data-view="my-tickets" aria-pressed="false"><i data-lucide="users"></i> Tiket Saya</button>
+        <button class="tc-tab" data-view="admin" aria-pressed="false"><i data-lucide="layout-dashboard"></i> Organizer</button>
+        <button class="tc-tab" data-view="scanner" aria-pressed="false"><i data-lucide="scan-line"></i> Check-In Staff</button>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center">
+        <button id="tc-reset-data" class="tc-tab" title="Kembalikan data ke awal pabrik"><i data-lucide="refresh"></i> Reset Data</button>
+        <span>Lokarena · Single Organizer Platform</span>
+      </div>
+    </div>
+
+    <!-- Main Application Shell -->
+    <main class="tc-app">
+      <!-- Header -->
+      <header class="tc-header">
+        <div class="tc-brand" data-view="event">
+          <span class="tc-logo"><i data-lucide="ticket" aria-hidden="true"></i></span>
+          <span>Lokarena<span class="tc-muted">events</span></span>
+        </div>
+        <nav class="tc-nav" aria-label="Navigasi Utama">
+          <button class="tc-link tc-current" data-view="event">Event</button>
+          <button class="tc-link" data-view="events">Jelajah</button>
+          <button class="tc-link" data-view="my-tickets">Tiket Saya</button>
+          <button class="tc-link" data-view="admin">Organizer</button>
+          <button class="tc-link" data-view="scanner">Check-in</button>
+          <button class="tc-link" id="tc-help">Bantuan</button>
+        </nav>
+      </header>
+
+      <!-- SCREEN 1: EVENT DETAIL (C03) -->
+      <section class="tc-main" data-screen="event">
+        <div class="tc-crumb" id="tc-event-crumb">Event / Seminar &amp; Workshop</div>
+
+        <div class="tc-hero">
+          <div class="tc-herocopy">
+            <span class="tc-eyebrow">Lokarena presents</span>
+            <h1 id="tc-event-title">Seminar Inovasi &amp; Bisnis 2026</h1>
+            <p id="tc-event-desc">Satu hari untuk mengeksplorasi ide, belajar dari praktisi, dan membangun koneksi bisnis.</p>
+            <div style="margin-top: 22px">
+              <span class="tc-eyebrow">Belajar · Terhubung · Bertumbuh</span>
+            </div>
+          </div>
+          <div class="tc-hero-label">
+            <strong id="tc-event-date">24 OKT</strong>
+            <span id="tc-event-city">Jakarta · 2026</span>
+          </div>
+        </div>
+
+        <div class="tc-columns">
+          <!-- Left Column: Details, Speakers, Agenda -->
+          <div>
+            <div class="tc-row">
+              <span class="tc-pill">Seminar Offline &amp; Workshop</span>
+              <span class="tc-muted tc-small">Diselenggarakan oleh Lokarena</span>
+            </div>
+
+            <h2>Tentang Acara Ini</h2>
+            <div class="tc-info">
+              <div class="tc-info-item">
+                <i data-lucide="calendar-days"></i>
+                <div>
+                  <strong id="tc-event-date-full">24 Oktober 2026</strong>
+                  <div class="tc-muted tc-small" id="tc-event-time">09.00–16.00 WIB</div>
+                </div>
+              </div>
+              <div class="tc-info-item">
+                <i data-lucide="map-pin"></i>
+                <div>
+                  <strong id="tc-event-venue">Lokarena Hall</strong>
+                  <div class="tc-muted tc-small">Jl. Sudirman Kav. 28, Jakarta Selatan</div>
+                </div>
+              </div>
+            </div>
+
+            <h3>Temukan perspektif baru untuk bisnismu</h3>
+            <p class="tc-muted">
+              Satu hari untuk mengeksplorasi ide, belajar dari praktisi, dan membangun koneksi dengan pelaku bisnis. Bawa tantanganmu, pulang dengan langkah yang bisa diterapkan.
+            </p>
+
+            <h3>Pembicara Pilihan</h3>
+            <div class="tc-muted tc-small">Praktisi dan pakar industri terkemuka</div>
+            <div class="tc-speakers" id="tc-speakers-list">
+              <!-- Rendered via JS -->
+            </div>
+
+            <h3>Agenda Acara</h3>
+            <div id="tc-agenda-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Right Column: Ticket Type Selector & Checkout Box -->
+          <aside class="tc-panel">
+            <div class="tc-row">
+              <h3 style="margin: 0">Pilih Tiketmu</h3>
+              <span class="tc-pill tc-ok">Penjualan Aktif</span>
+            </div>
+            <hr class="tc-rule">
+
+            <div id="tc-ticket-selector">
+              <!-- Rendered via JS -->
+            </div>
+
+            <hr class="tc-rule">
+            <div class="tc-row">
+              <span>Jumlah Tiket</span>
+              <div class="tc-quantity">
+                <button id="tc-minus" aria-label="Kurangi tiket">−</button>
+                <strong id="tc-qty">1</strong>
+                <button id="tc-plus" aria-label="Tambah tiket">+</button>
+              </div>
+            </div>
+
+            <div class="tc-row" style="margin-top: 14px">
+              <span class="tc-muted">Estimasi Total</span>
+              <strong id="tc-event-total" class="tc-price">Rp250.000</strong>
+            </div>
+
+            <button class="tc-primary tc-full" id="tc-btn-to-checkout" style="margin-top: 12px">
+              Lanjutkan Pembelian <i data-lucide="arrow-right"></i>
+            </button>
+            <p class="tc-muted tc-small" style="margin: 12px 0 0; text-align: center">
+              Guest checkout tanpa wajib akun · Maks. 4 tiket per order
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: ALL EVENTS DISCOVERY (C01 & C02) -->
+      <section class="tc-main" data-screen="events" hidden>
+        <div class="tc-crumb">Semua Event / Jelajah Acara</div>
+        <h2>Jelajah Event Lokarena</h2>
+        <p class="tc-muted">Temukan seminar, workshop, webinar, dan gathering resmi yang diselenggarakan oleh Lokarena.</p>
+        <div id="tc-discovery-list" style="margin-top: 20px">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- SCREEN 3: REGISTRATION & CHECKOUT (C04 & C05) -->
+      <section class="tc-main" data-screen="checkout" hidden>
+        <div class="tc-steps">
+          <span>1 Pilih Tiket</span>
+          <span>→</span>
+          <b>2 Data &amp; Review</b>
+          <span>→</span>
+          <span>3 Pembayaran</span>
+        </div>
+
+        <h2>Satu langkah lagi untuk bergabung</h2>
+        <p class="tc-muted">Tiket akan dikirimkan ke email Anda. Pastikan data pembeli dan peserta sudah tepat.</p>
+
+        <form id="tc-checkout-form">
+          <div class="tc-columns">
+            <!-- Left: Buyer & Attendee Forms -->
+            <div class="tc-panel">
+              <h3>Data Pembeli (Pemilik Order)</h3>
+              <div class="tc-formgrid">
+                <div>
+                  <label for="tc-buyer-name">Nama Lengkap</label>
+                  <input id="tc-buyer-name" required placeholder="Nama sesuai KTP" value="Budi Santoso">
+                </div>
+                <div>
+                  <label for="tc-buyer-phone">Nomor WhatsApp</label>
+                  <input id="tc-buyer-phone" type="tel" required placeholder="081234567890" value="081234567890">
+                </div>
+              </div>
+
+              <label for="tc-buyer-email">Email untuk Akses &amp; Notifikasi Tiket</label>
+              <input id="tc-buyer-email" type="email" required placeholder="budi@example.com" value="budi@example.com">
+
+              <label class="tc-check">
+                <input id="tc-same-as-buyer" type="checkbox" checked>
+                Saya juga menjadi peserta pertama
+              </label>
+
+              <hr class="tc-rule">
+              <h3>Data Peserta (Attendee)</h3>
+              <div id="tc-attendee-fields">
+                <!-- Dynamically generated according to ticket quantity -->
+              </div>
+            </div>
+
+            <!-- Right: Order Summary & Voucher -->
+            <aside class="tc-panel">
+              <h3>Ringkasan Pesanan</h3>
+              <div class="tc-event-preview">
+                <div class="tc-event-thumb" role="img" aria-label="Banner Seminar"></div>
+                <div>
+                  <strong id="tc-checkout-event-title">Seminar Inovasi &amp; Bisnis 2026</strong>
+                  <div class="tc-muted tc-small" id="tc-checkout-event-meta">24 Oktober 2026 · Jakarta</div>
+                </div>
+              </div>
+
+              <hr class="tc-rule">
+              <div class="tc-row">
+                <span id="tc-checkout-item-title">Regular Pass × 1</span>
+                <span id="tc-checkout-subtotal">Rp250.000</span>
+              </div>
+
+              <label for="tc-voucher-code">Kode Promo / Voucher</label>
+              <div class="tc-voucher">
+                <input id="tc-voucher-code" placeholder="Coba LOKA20 atau HEMAT50K">
+                <button type="button" class="tc-secondary" id="tc-btn-apply-voucher">Terapkan</button>
+              </div>
+              <p id="tc-voucher-msg" class="tc-small" aria-live="polite" style="margin-top: 6px"></p>
+
+              <div class="tc-row" style="margin-top: 10px">
+                <span class="tc-muted">Diskon Voucher</span>
+                <span id="tc-checkout-discount" style="color: var(--tc-green)">Rp0</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-muted">Biaya Layanan</span>
+                <span>Rp0</span>
+              </div>
+
+              <hr class="tc-rule">
+              <div class="tc-row">
+                <strong>Total Pembayaran</strong>
+                <strong id="tc-checkout-total" class="tc-price">Rp250.000</strong>
+              </div>
+
+              <div class="tc-muted tc-small" style="margin-top: 10px">
+                Kebijakan: Pembatalan sepihak oleh peserta tidak dapat direfund. Jika acara dibatalkan oleh penyelenggara, dana dikembalikan penuh 100%.
+              </div>
+
+              <label class="tc-check">
+                <input id="tc-terms-check" type="checkbox" required checked>
+                Saya menyetujui ketentuan acara dan kebijakan transaksi Lokarena.
+              </label>
+
+              <button class="tc-primary tc-full" type="submit">
+                Lanjut ke Pembayaran <i data-lucide="arrow-right"></i>
+              </button>
+              <p class="tc-muted tc-small" style="margin: 10px 0 0; text-align: center">
+                Reservasi stok tiket atomik selama 15 menit
+              </p>
+            </aside>
+          </div>
+        </form>
+      </section>
+
+      <!-- SCREEN 4: PAYMENT SIMULATOR & INSTRUCTION (C06) -->
+      <section class="tc-main" data-screen="payment" hidden>
+        <div class="tc-focusstage">
+          <div class="tc-steps">
+            <span>1 Pilih Tiket → 2 Data &amp; Review →</span>
+            <b>3 Pembayaran</b>
+          </div>
+
+          <div class="tc-panel">
+            <div class="tc-row">
+              <span class="tc-pill">Menunggu Pembayaran</span>
+              <div class="tc-small tc-muted" style="display: flex; gap: 4px; align-items: center">
+                <i data-lucide="clock"></i> Batas Waktu: <strong id="tc-pay-countdown" style="color: var(--tc-brand)">15:00</strong>
+              </div>
+            </div>
+
+            <h2 style="margin-top: 14px">Selesaikan Pembayaran</h2>
+            <p class="tc-muted" id="tc-pay-ord-number">ORD-20261004-000123</p>
+
+            <div class="tc-row">
+              <span>Total Tagihan</span>
+              <strong class="tc-price" id="tc-pay-amount">Rp250.000</strong>
+            </div>
+
+            <label for="tc-payment-method-select">Pilih Metode Pembayaran</label>
+            <select id="tc-payment-method-select">
+              <option value="qris">QRIS (GoPay, OVO, Dana, ShopeePay, Mobile Banking)</option>
+              <option value="va_bca">Virtual Account BCA</option>
+              <option value="va_mandiri">Virtual Account Mandiri</option>
+              <option value="ewallet">E-Wallet Direct</option>
+            </select>
+
+            <div id="tc-payment-method-details">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <div class="tc-toast" id="tc-pay-status-note">
+              <i data-lucide="info"></i>
+              <div>Simulasi Payment Gateway: Klik tombol di bawah untuk menguji respons server dan perubahan status tiket.</div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 20px">
+              <button class="tc-primary tc-full" id="tc-btn-sim-pay-success">
+                <i data-lucide="check"></i> Simulasikan Pembayaran Berhasil (Success)
+              </button>
+              <button class="tc-secondary tc-full" id="tc-btn-sim-pay-late">
+                <i data-lucide="clock"></i> Simulasikan Bayar Terlambat (Masuk Manual Review)
+              </button>
+              <button class="tc-secondary tc-full" id="tc-btn-sim-pay-failed">
+                <i data-lucide="shield-alert"></i> Simulasikan Batal / Expired
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 5: E-TICKET (C08) -->
+      <section class="tc-main" data-screen="ticket" hidden>
+        <div class="tc-focusstage">
+          <div class="tc-row">
+            <h2 style="margin: 0">E-Ticket Peserta</h2>
+            <span class="tc-pill tc-ok" id="tc-ticket-status-pill">Terkonfirmasi</span>
+          </div>
+          <p class="tc-muted tc-small" style="margin-top: 8px">
+            Tunjukkan kode QR ini kepada petugas check-in saat tiba di lokasi acara.
+          </p>
+
+          <div class="tc-ticket" id="tc-printable-ticket">
+            <div class="tc-ticket-cover" role="img" aria-label="Cover Seminar"></div>
+            <div class="tc-ticket-head">
+              <span class="tc-eyebrow" style="color: var(--tc-brand)">Lokarena Events</span>
+              <h2 id="tc-ticket-event-title" style="margin: 10px 0 4px">Seminar Inovasi &amp; Bisnis 2026</h2>
+              <div class="tc-muted" id="tc-ticket-event-date">24 Oktober 2026 · 09.00 WIB</div>
+            </div>
+
+            <div class="tc-ticket-body">
+              <span class="tc-pill" id="tc-ticket-type-name">Regular Pass</span>
+              <h3 id="tc-ticket-attendee-name" style="margin: 12px 0 0; font-size: 18px">Budi Santoso</h3>
+              <div class="tc-qr" id="tc-ticket-qr" role="img" aria-label="QR Code Masuk Acara"></div>
+              <div class="tc-muted tc-small" id="tc-ticket-code-label">TIX-DEMO-001</div>
+              <div id="tc-ticket-webinar-link" class="tc-toast" hidden style="margin-top: 12px"></div>
+            </div>
+
+            <div class="tc-perforated"></div>
+
+            <div class="tc-ticket-meta">
+              <div>
+                <span class="tc-muted tc-small">Lokasi Venue</span>
+                <div id="tc-ticket-venue"><strong>Lokarena Hall</strong></div>
+              </div>
+              <div>
+                <span class="tc-muted tc-small">Waktu Masuk</span>
+                <div id="tc-ticket-time"><strong>09.00–16.00 WIB</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 16px">
+            <button class="tc-primary tc-full" id="tc-download-ticket-btn">
+              <i data-lucide="download"></i> Unduh / Cetak E-Ticket (PDF)
+            </button>
+            <button class="tc-secondary" data-view="event" title="Kembali ke Beranda Event">
+              Event Lain
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 6: TIKET SAYA / PARTICIPANT PORTAL (C09 & C10) -->
+      <section class="tc-main" data-screen="my-tickets" hidden>
+        <div class="tc-focusstage">
+          <div class="tc-crumb">Peserta / Akses Tiket</div>
+          <h2>Tiket Saya</h2>
+          <p class="tc-muted">Masukkan alamat email Anda untuk mengakses daftar tiket dan riwayat pesanan.</p>
+
+          <form id="tc-magiclink-form" class="tc-panel" style="margin-bottom: 20px">
+            <label for="tc-magiclink-email">Alamat Email Terdaftar</label>
+            <div style="display: flex; gap: 8px">
+              <input id="tc-magiclink-email" type="email" required placeholder="budi@example.com" value="budi@example.com">
+              <button type="submit" class="tc-primary" style="white-space: nowrap">Cari Tiket</button>
+            </div>
+            <p class="tc-small tc-muted" style="margin-top: 8px">Sistem akan memverifikasi email dan menampilkan tiket yang Anda miliki.</p>
+          </form>
+
+          <div id="tc-mytickets-result" hidden>
+            <h3>Tiket Terhubung</h3>
+            <div id="tc-mytickets-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 7: ORGANIZER DASHBOARD (A01 - A12) -->
+      <section data-screen="admin" hidden>
+        <div class="tc-admin">
+          <!-- Sidebar -->
+          <aside class="tc-sidebar">
+            <button class="tc-active" data-admin-tab="Dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button data-admin-tab="Events"><i data-lucide="calendar"></i> Events</button>
+            <button data-admin-tab="Orders"><i data-lucide="receipt"></i> Orders</button>
+            <button data-admin-tab="Participants"><i data-lucide="users"></i> Participants</button>
+            <button data-admin-tab="Vouchers"><i data-lucide="tag"></i> Vouchers</button>
+            <button data-admin-tab="Audit"><i data-lucide="clock"></i> Audit Log</button>
+            <button data-view="scanner"><i data-lucide="scan-line"></i> Buka Check-in</button>
+          </aside>
+
+          <!-- Main Admin Content Area -->
+          <div class="tc-admincontent">
+            <div class="tc-row">
+              <div>
+                <div class="tc-muted tc-small">Workspace Organizer Lokarena</div>
+                <h2 id="tc-admin-view-title" style="margin: 4px 0 0">Dashboard</h2>
+              </div>
+              <span class="tc-pill">Super Admin</span>
+            </div>
+
+            <div id="tc-admin-content-holder" style="margin-top: 14px">
+              <!-- Rendered via JS depending on adminTab -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 8: CHECK-IN STAFF STATION (S01, S02, S03) -->
+      <section class="tc-main" data-screen="scanner" hidden>
+        <div class="tc-focusstage">
+          <div class="tc-row">
+            <h2 style="margin: 0">Stasiun Check-In</h2>
+            <span class="tc-pill tc-ok">Staff Mode · Online</span>
+          </div>
+
+          <div style="margin: 12px 0">
+            <label for="tc-scanner-event-select">Pilih Event yang Ditugaskan</label>
+            <select id="tc-scanner-event-select">
+              <!-- Options populated by JS -->
+            </select>
+          </div>
+
+          <div class="tc-panel">
+            <h3>Scan QR Tiket Peserta</h3>
+            <div class="tc-scanwindow">
+              <video id="tc-scanner-video" playsinline></video>
+              <div class="tc-scanframe">
+                <i data-lucide="scan-line"></i>
+              </div>
+            </div>
+
+            <div class="tc-row" style="margin-top: 12px">
+              <button class="tc-primary" id="tc-toggle-camera-btn">Nyalakan Kamera</button>
+              <button class="tc-secondary" id="tc-btn-sim-scan">Simulasikan Scan Tiket</button>
+              <button class="tc-link" id="tc-manual-search-toggle">Cari Manual</button>
+            </div>
+
+            <!-- Manual Search Container -->
+            <div id="tc-scanner-manual-box" hidden style="margin-top: 16px; border-top: 1px solid var(--tc-line); padding-top: 14px">
+              <label for="tc-scanner-manual-input">Cari Nama Peserta, Email, atau Kode Tiket</label>
+              <div style="display: flex; gap: 8px">
+                <input id="tc-scanner-manual-input" placeholder="Contoh: Budi atau TIX-DEMO-001">
+                <button class="tc-secondary" id="tc-scanner-manual-find-btn" style="white-space: nowrap">Cari</button>
+              </div>
+              <div id="tc-scanner-manual-results"></div>
+            </div>
+
+            <!-- Validation Result Box -->
+            <div id="tc-scan-result-box" class="tc-result" hidden aria-live="polite">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Application Modules -->
+</body>
+</html>
